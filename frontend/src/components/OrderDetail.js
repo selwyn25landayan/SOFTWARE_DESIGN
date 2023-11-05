@@ -1,7 +1,8 @@
 const OrderDetails = ({ orderdetail }) => {
+  const formattedCreatedAt = new Date(orderdetail.createdAt).toLocaleString(); 
   return (
     <div className="order-details">
-      <h4>Sunday | 6:00PM</h4>
+      <h4>Sunday | 6:00 PM</h4>
       <p><strong>Name: </strong>{orderdetail.name}</p>
       <p><strong>Address: </strong>{orderdetail.address}</p>
       <p><strong>Mobile Number: </strong>{orderdetail.mobile_number}</p>
@@ -11,7 +12,7 @@ const OrderDetails = ({ orderdetail }) => {
       <p><strong>Mode of Payment: </strong>{orderdetail.payment}</p>
       <p><strong>Delivery Options: </strong>{orderdetail.delivery_options}</p>
       <p><strong>Total: </strong>{orderdetail.total}</p>
-      <p><strong>Created At: </strong>{orderdetail.createdAt}</p>
+      <p><strong>Created At: </strong>{formattedCreatedAt}</p> {}
     </div>
   );
 }
