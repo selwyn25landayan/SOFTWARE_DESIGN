@@ -9,23 +9,25 @@
 body {
   background: #c2d6e1;
   margin: 0;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
 }
 header {
   background: #fff;
+  padding: 10px 0;
 }
 header .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 10px 20px;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 header a {
-  color: #333;
+  color: var(--primary);
   text-decoration: none;
 }
+
 .pages {
   max-width: 1400px;
   padding: 20px;
@@ -39,12 +41,13 @@ header a {
   gap: 10px;
 }
 .order-details {
-  background: #89b0c2;
+  background: #fff;
+  border: 1px solid #ddd;
   border-radius: 4px;
   margin: 20px auto;
   padding: 20px;
   position: relative;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 .order-details h4 {
   margin: 0 0 10px 0;
@@ -54,7 +57,7 @@ header a {
 .order-details p {
   margin: 0;
   font-size: 0.9em;
-  color: #0c0c0c;
+  color: #333;
 }
 .order-details span {
   position: absolute;
@@ -64,7 +67,7 @@ header a {
   background: #89b0c2;
   padding: 6px;
   border-radius: 50%;
-  color: #333;
+  color: var(--primary);
 }
 
 /* new workout form */
@@ -76,7 +79,7 @@ input {
   margin-top: 10px;
   margin-bottom: 20px;
   width: 100%;
-  border: 1px solid #bddddd;
+  border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
 }
@@ -85,7 +88,7 @@ form button {
   border: 0;
   color: #fff;
   padding: 10px;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -102,15 +105,15 @@ div.error {
 button.selected {
   background: var(--primary);
   color: #b4d3e9;
-  border: 2px solid black; /* Add black border to the selected button */
+  border: 2px solid var(--primary); /* Add border in primary color to the selected button */
   transition: background-color 0.2s, color 0.2s, border 0.2s;
   pointer-events: none;
 }
 
 /* Style for unselected buttons */
 button {
-  background: transparent;
-  color: #b4d3e9;
+  background: #f0f0f0;
+  color: var(--primary);
   border: 2px solid transparent;
   transition: background-color 0.2s, color 0.2s, border 0.2s;
   margin-right: 10px;
@@ -118,7 +121,8 @@ button {
 
 /* Hover effect for unselected buttons */
 button:not(.selected):hover {
-  background: #b4d3e9;
+  background: var(--primary);
+  color: #b4d3e9;
 }
 
 input.error {

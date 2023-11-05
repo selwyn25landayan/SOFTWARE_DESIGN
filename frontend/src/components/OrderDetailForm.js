@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useOrderDetailsContext } from "../hooks/useOrderDetailsContext";
 
 const OrderDetailForm = () => {
-  const { dispatch } = useOrderDetailsContext()
+  const { dispatch } = useOrderDetailsContext();
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [mobile_number, setMobileNumber] = useState("");
@@ -16,7 +16,7 @@ const OrderDetailForm = () => {
 
   useEffect(() => {
     let newTotal = 0;
-  
+
     newTotal += laundry_services.reduce((total, service) => {
       if (service === "Wash" || service === "Dry") {
         return total + 80; // Assign the value 80 for "Wash" and "Dry"
@@ -25,11 +25,11 @@ const OrderDetailForm = () => {
       }
       return total;
     }, 0);
-  
+
     if (delivery_options === "Deliver") newTotal += 80;
-  
+
     setTotal(newTotal);
-  }, [laundry_services, delivery_options]);  
+  }, [laundry_services, delivery_options]);
 
   const handleServiceOptionClick = (option) => {
     setServiceOptions(option);
@@ -50,9 +50,7 @@ const OrderDetailForm = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
     const orderdetail = {
       name,
       address,
@@ -90,12 +88,12 @@ const OrderDetailForm = () => {
       setTotal(0);
       setError(null);
       console.log("New Order Detail Added", json);
-      dispatch({type: 'CREATE_ORDERDETAILS', payload: json})
+      dispatch({ type: "CREATE_ORDERDETAILS", payload: json });
     }
   };
 
   return (
-    <form className="create" onSubmit={handleSubmit}>
+    <div className="create">
       <h3>Fill Out this Order Form</h3>
 
       <label>Name: </label>
@@ -137,38 +135,23 @@ const OrderDetailForm = () => {
 
       <label>Weight: </label>
       <div>
-        <button
-          onClick={() => setWeight("8")}
-          className={weight === "8" ? "selected" : ""}
-        >
+        <button onClick={() => setWeight("8")} className={weight === "8" ? "selected" : ""}>
           8 kg
         </button>
-        <button
-          onClick={() => setWeight("12")}
-          className={weight === "12" ? "selected" : ""}
-        >
+        <button onClick={() => setWeight("12")} className={weight === "12" ? "selected" : ""}>
           12 kg
         </button>
       </div>
 
       <label>Laundry Services: </label>
       <div>
-        <button
-          onClick={() => handleLaundryServiceClick("Wash")}
-          className={laundry_services.includes("Wash") ? "selected" : ""}
-        >
+        <button onClick={() => handleLaundryServiceClick("Wash")} className={laundry_services.includes("Wash") ? "selected" : ""}>
           Wash
         </button>
-        <button
-          onClick={() => handleLaundryServiceClick("Dry")}
-          className={laundry_services.includes("Dry") ? "selected" : ""}
-        >
+        <button onClick={() => handleLaundryServiceClick("Dry")} className={laundry_services.includes("Dry") ? "selected" : ""}>
           Dry
         </button>
-        <button
-          onClick={() => handleLaundryServiceClick("Fold")}
-          className={laundry_services.includes("Fold") ? "selected" : ""}
-        >
+        <button onClick={() => handleLaundryServiceClick("Fold")} className={laundry_services.includes("Fold") ? "selected" : ""}>
           Fold
         </button>
       </div>
@@ -190,9 +173,9 @@ const OrderDetailForm = () => {
       <label>Total: </label>
       <input type="text" value={total} readOnly />
 
-      <button>Place Order</button>
+      <button onClick={handleSubmit}>Place Order</button>
       {error && <div className="error">{error}</div>}
-    </form>
+    </div>
   );
 };
 
